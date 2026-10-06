@@ -141,6 +141,19 @@ function AdminMemberRecordStub({ memberId, onNavigate }) {
           </button>
         </div>
       }
+      beforeHistory={
+        editMemberOpen ? (
+          <EditMemberForm
+            key={`${member.id}-${recordVersion}`}
+            memberId={memberId}
+            memberName={member.full_name}
+            duesStartMonth={duesStartMonth}
+            onSaved={() => setRecordVersion((version) => version + 1)}
+          />
+        ) : paymentManagementOpen ? (
+          <PaymentCoveragePreview memberId={memberId} memberName={member.full_name} memberDues={memberDues} onSaved={() => setRecordVersion((version) => version + 1)} />
+        ) : null
+      }
 footer={
       <>
         <section className="archive-member-section">
